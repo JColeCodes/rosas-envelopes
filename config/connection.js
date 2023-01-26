@@ -1,11 +1,23 @@
-const mongoose = require( 'mongoose' );
+const Sequelize = require('sequelize');
+require('dotenv').config();
 
-mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/rosas-envelopes', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  // !! MongoParseError: options usecreateindex, usefindandmodify are not supported
-  // useCreateIndex: true,
-  // useFindAndModify: false
-} );
+let sequelize;
 
-module.exports = mongoose.connection;
+// If connected to MySQL
+if (process.env.MYSQL_URL) {
+  sequelize = new Sequelize(process.env.MYSQL_URL);
+} else {
+  // Else, create connection to our local database
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: 'localhost',
+      dialect: 'mysql',
+      port: 3306
+    }
+  );
+}
+
+module.exports = sequelize;

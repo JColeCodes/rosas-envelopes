@@ -1,19 +1,14 @@
-const db = require('../config/connection');
-const { User } = require('../models');
+const seedUsers = require('./user-seeds');
 
-db.once('open', async () => {
-  await User.deleteMany({});
+const sequelize = require('../config/connection');
 
-  // create user data
-  const userData = [];
+const seedAll = async() => {
+    await sequelize.sync({ force: true });
+    console.log('\n----- DATABASE SYNCED -----\n');
 
-  const saffrom = { username: 'saffrom', password: '1234' };
-  const drgluon = { username: 'drgluon', password: '1234' };
+    await seedUsers();
+    
+    process.exit(0);
+};
 
-  userData.push(saffrom, drgluon);
-
-  const createdUsers = await User.collection.insertMany(userData);
-
-  console.log('all done!');
-  process.exit(0);
-});
+seedAll();

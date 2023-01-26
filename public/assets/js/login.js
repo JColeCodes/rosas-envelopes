@@ -1,20 +1,7 @@
 const listDiv = document.querySelector('.users');
-const response = null; 
 
-fetch('/graphql', {
-  method: 'POST',
+console.log("Hello");
 
-  headers: {
-    "Content-Type": "application/json"
-  },
-
-  body: JSON.stringify({
-    query: `{
-      user {
-        username
-      }
-    }`
-  })
-})
-.then(res => res.json())
-.then(res => console.log(res.data.users.username))
+fetch('/api/users')
+  .then(res => res.json())
+  .then(res => console.log(res));

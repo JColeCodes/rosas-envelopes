@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS rosa_db;
+
+CREATE DATABASE rosa_db;

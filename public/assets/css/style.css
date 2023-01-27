@@ -16,6 +16,7 @@ body {
   background-color: var(--dark);
   font-family: 'Lato', Helvetica, Arial, sans-serif;
   font-size: 16px;
+  color: var(--bg-color);
   overflow-x: hidden;
 
   display: flex;
@@ -56,9 +57,17 @@ a:hover {
   cursor: pointer;
   color: var(--fez-dark);
 }
+.btn-link:disabled:hover {
+  cursor: default;
+  color: var(--dark);
+}
 
 img {
   max-width: 100%;
+}
+
+ul {
+  list-style-type: none;
 }
 
 header h1 {
@@ -103,10 +112,6 @@ h2 {
   color: #222;
   text-transform: uppercase;
 }
-.login input:focus {
-  outline: none;
-  border: 1px solid var(--fez);
-}
 .login button {
   background-color: var(--fez);
   color: #FFF;
@@ -136,6 +141,52 @@ h2 {
 }
 .dash-btns {
   margin: 0 0 25px 0;
+}
+
+
+.add-envelope input {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  padding: 15px 15px 10px;
+  font-size: 1em;
+  line-height: 1;
+  margin: 0 0 10px;
+  color: #222;
+  border: 1px solid #EEE;
+  border-radius: 8px;
+  width: calc(100% - 30px);
+}
+.current-envelopes {
+  margin-top: 40px;
+}
+ul.current-list {
+  margin: 15px;
+}
+ul.current-list li {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px 15px;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #181818;
+}
+ul.current-list li .envelope-text {
+  flex: 1;
+  text-align: left;
+}
+.delete-btn {
+  font-size: 1em;
+  background-color: var(--fez);
+  color: var(--bg-color);
+  padding: 3px 5px;
+  margin: 0 3px;
+}
+.delete-btn:hover {
+  background-color: var(--fez-dark);
+  color: var(--bg-color);
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--fez);
 }
 
 .green-screen {

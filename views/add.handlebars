@@ -5,7 +5,6 @@
 
         <form class="add-envelope">
             <div>
-                <label for="add-text">Text:</label>
                 <input type="text" id="add-text" />
             </div>
             <div>
@@ -22,7 +21,7 @@
             <ul class="current-list">
                 {{#each envelopes as |envelope|}}
                 <li>
-                    <div>{{envelope.envelope_text}}</div>
+                    <div class="envelope-text">{{envelope.envelope_text}}</div>
                     <div data-id="{{envelope.id}}" class="btn-link delete-btn">Delete</div>
                 </li>
                 {{/each}}

@@ -1,16 +1,149 @@
 :root {
-    --main-color: gray;
+  --fez: #D90C00;
+  --fez-dark: #9B0900;
+  --bee: #FBE509;
+  --bg-color: #FFF;
+  --dark: #222;
   }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: var(--main-color);
-    font-family: 'Lato', Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    overflow-x: hidden;
-  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--dark);
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+a,
+a:hover,
+.btn-link,
+.btn-link:hover {
+  transition: all 0.5s ease-in-out;
+}
+
+a {
+  text-decoration: none;
+  color: var(--bg-color);
+}
+a:hover {
+  color: var(--bee);
+}
+
+.btn-link {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2em;
+  line-height: 1;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  margin: 1px;
+  color: var(--dark);
+}
+.btn-link:hover {
+  cursor: pointer;
+  color: var(--fez-dark);
+}
+
+img {
+  max-width: 100%;
+}
+
+header h1 {
+  font-family: 'Luckiest Guy', cursive;
+  font-family: 400;
+  font-size: 3em;
+  margin: 0 0 15px;
+  color: var(--bg-color);
+}
+
+h2 {
+  font-family: 'Luckiest Guy', cursive;
+  font-family: 400;
+  font-size: 2em;
+  color: var(--bg-color);
+  margin: 10px 0 5px;
+}
+
+.login-page {
+  background-color: var(--bg-color);
+  color: #222;
+  font-family: 'Fredoka One', cursive;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 6px #000;
+  width: 600px; max-width: 100%;
+}
+.login-page h1 {
+  color: var(--fez);
+}
+.login label, .login input {
+  width: 100%;
+  font-size: 1.5em;
+}
+.login input {
+  font-family: 'Luckiest Guy', cursive;
+  padding: 15px 15px 10px;
+  font-size: 2.6em;
+  line-height: 1;
+  text-align: center;
+  margin: 12px;
+  color: #222;
+  text-transform: uppercase;
+}
+.login input:focus {
+  outline: none;
+  border: 1px solid var(--fez);
+}
+.login button {
+  background-color: var(--fez);
+  color: #FFF;
+}
+.login button:hover {
+  background-color: var(--bee);
+  color: #222;
+}
+
+.dash-links {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.dash-links a {
+  background-color: var(--bg-color);
+  padding: 15px;
+  margin: 5px;
+  border-radius: 8px;
+  font-family: 'Fredoka One', cursive;
+  text-transform: uppercase;
+  color: var(--fez);
+  font-size: 2em;
+}
+.dash-links a:hover {
+  color: var(--fez-dark);
+}
+.dash-btns {
+  margin: 0 0 25px 0;
+}
+
+.green-screen {
+  background-color: lime;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 50px;
+}

@@ -1,6 +1,7 @@
 <div class="dash-page {{#unless dashboardView}}green-screen{{/unless}}">
     {{#if dashboardView}}
-    <div>
+    {{> header}}
+    <div class="dash-btns">
         <button class="btn-link" id="randomize-envelopes-btn">Randomize Envelopes</button>
         <button class="btn-link" id="randomize-img-btn">Randomize Parcel Delivery Message</button>
     </div>
@@ -8,12 +9,14 @@
 
     <!-- Envelopes -->
     {{#unless parcelView}}
+    {{#if dashboardView}}<h2>Envelopes</h2>{{/if}}
     <div id="envelope-view">
     </div>
     {{/unless}}
 
     <!-- Parcel Image -->
     {{#unless envelopeView}}
+    {{#if dashboardView}}<h2>Parcel Delivery Message</h2>{{/if}}
     <div id="parcel-view">
         <img id="parcel-img" />
     </div>

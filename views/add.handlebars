@@ -1,30 +1,34 @@
 <div class="dash-page">
-    Add envelope text
+    {{> header}}
+    <div class="envelope-form">
+        <h2>Add envelope text</h2>
 
-    <form class="add-envelope">
-        <div>
-            <label for="add-text">Text:</label>
-            <input type="text" id="add-text" />
-        </div>
-        <div>
-            <button type="submit" data-envelopes="{{envelopes.length}}" class="btn-link">Add</button>
-        </div>
-    </form>
-
-    There are currently {{envelopes.length}} envelope(s).
-
-    {{#if envelopes}}
-    <div class="current-envelopes">
-        <ul class="current-list">
-            {{#each envelopes as |envelope|}}
-            <li>
-                <div>{{envelope.envelope_text}}</div>
-                <div data-id="{{envelope.id}}" class="btn-link delete-btn">Delete</div>
-            </li>
-            {{/each}}
-        </ul>
+        <form class="add-envelope">
+            <div>
+                <label for="add-text">Text:</label>
+                <input type="text" id="add-text" />
+            </div>
+            <div>
+                <button type="submit" data-envelopes="{{envelopes.length}}" class="btn-link">Add</button>
+            </div>
+        </form>
     </div>
-    {{/if}}
+
+    <div class="current-envelopes">
+        <h2>Current Envelopes</h2>
+        There are currently {{envelopes.length}} envelope(s).
+
+        {{#if envelopes}}
+            <ul class="current-list">
+                {{#each envelopes as |envelope|}}
+                <li>
+                    <div>{{envelope.envelope_text}}</div>
+                    <div data-id="{{envelope.id}}" class="btn-link delete-btn">Delete</div>
+                </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
 </div>
 
 <script src="/assets/js/add.js"></script>

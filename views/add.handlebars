@@ -1,0 +1,32 @@
+<div class="dash-page">
+    Add envelope text
+
+    <form class="add-envelope">
+        <div>
+            <label for="add-text">Text:</label>
+            <input type="text" id="add-text" />
+        </div>
+        <div>
+            <button type="submit" data-envelopes="{{envelopeData.length}}">Add</button>
+        </div>
+    </form>
+
+    There are currently {{envelopeData.length}} envelopes.
+
+    {{#if envelopeData}}
+    <div class="current-envelopes">
+    Hello?
+        <ul class="current-list">
+            {{#each envelopeData}}
+            <li>
+                <div>{{envelopeData.envelope_text}}</div>
+                <div id="{{envelopeData.id}}">Delete</div>
+            </li>
+            {{/each}}
+        </ul>
+    <button id="clear-add">Clear All</button>
+    </div>
+    {{/if}}
+</div>
+
+<script src="/assets/js/add.js"></script>

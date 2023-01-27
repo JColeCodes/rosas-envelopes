@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Envelope, User } = require('../models');
 
 // Get all users
 router.get('/users', (req, res) => {
@@ -34,7 +34,7 @@ router.post('/users/login', (req, res) => {
             req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
-            
+
             res.json({ user: dbUserData, message: 'Login successful' });
         });
     });
@@ -49,6 +49,41 @@ router.post('/users/logout', (req, res) => {
     } else {
         res.status(404).end();
     }
+});
+
+// Create envelope text
+router.post('/', (req, res) => {
+    /* Expects: {
+        "envelope_text": "Lorem ipsum"
+    } */
+    Envelope.create(req.body)
+    .then((dbEnvelopeData) => {
+        res.json(dbEnvelopeData);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+// Remove envelope
+router.delete('/:id', (req, res) => {
+    Envelope.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((dbEnvelopeData) => {
+        if (!dbEnvelopeData) {
+            res.status(404).json({ message: 'No envelope found with this id' });
+            return;
+        }
+        res.json(dbEnvelopeData);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 module.exports = router;

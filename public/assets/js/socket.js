@@ -84,6 +84,11 @@ socket.on('envelope', (data) => {
         });
     }
     else if (data.current === 'parcel' && parcelImg) {
+        parcelImg.classList.remove("show-img");
+        setTimeout(function() {
+            parcelImg.classList.add("show-img");
+        }, 400);
+
         parcelImg.src = `/assets/images/parcels/00${data.parcel}.png`;
     }
 });

@@ -51,6 +51,18 @@ router.post('/users/logout', (req, res) => {
     }
 });
 
+// Get all envelopes
+router.get('/envelopes', (req, res) => {
+  Envelope.findAll({
+    attributes: [ 'envelope_text' ]
+  })
+    .then((dbEnvelopeData) => res.json(dbEnvelopeData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // Create envelope text
 router.post('/envelopes/add', (req, res) => {
     /* Expects: {

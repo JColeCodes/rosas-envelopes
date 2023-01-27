@@ -52,7 +52,7 @@ router.post('/users/logout', (req, res) => {
 });
 
 // Create envelope text
-router.post('/', (req, res) => {
+router.post('/envelopes/add', (req, res) => {
     /* Expects: {
         "envelope_text": "Lorem ipsum"
     } */
@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
 });
 
 // Remove envelope
-router.delete('/:id', (req, res) => {
+router.delete('/envelopes/remove/:id', (req, res) => {
     Envelope.destroy({
         where: {
             id: req.params.id

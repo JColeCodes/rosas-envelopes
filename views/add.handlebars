@@ -7,24 +7,22 @@
             <input type="text" id="add-text" />
         </div>
         <div>
-            <button type="submit" data-envelopes="{{envelopeData.length}}">Add</button>
+            <button type="submit" data-envelopes="{{envelopes.length}}" class="btn-link">Add</button>
         </div>
     </form>
 
-    There are currently {{envelopeData.length}} envelopes.
+    There are currently {{envelopes.length}} envelope(s).
 
-    {{#if envelopeData}}
+    {{#if envelopes}}
     <div class="current-envelopes">
-    Hello?
         <ul class="current-list">
-            {{#each envelopeData}}
+            {{#each envelopes as |envelope|}}
             <li>
-                <div>{{envelopeData.envelope_text}}</div>
-                <div id="{{envelopeData.id}}">Delete</div>
+                <div>{{envelope.envelope_text}}</div>
+                <div data-id="{{envelope.id}}" class="btn-link delete-btn">Delete</div>
             </li>
             {{/each}}
         </ul>
-    <button id="clear-add">Clear All</button>
     </div>
     {{/if}}
 </div>

@@ -4,8 +4,8 @@ async function addTextHandler(e) {
   
     const envelope_text = document.querySelector('#add-text').value.trim();
   
-    if (username && password) {
-        const response = await fetch('/api/users/login', {
+    if (envelope_text) {
+        const response = await fetch('/api/envelopes/add', {
             method: 'POST',
             body: JSON.stringify({
                 envelope_text
@@ -20,6 +20,25 @@ async function addTextHandler(e) {
 }
 
 document.querySelector('.add-envelope').addEventListener('submit', addTextHandler);
+
+
+// Function to delete envelope
+async function deleteTextHandler(id) {
+    if (id) {
+        const response = await fetch(`/api/envelopes/remove/${id}`, {
+            method: 'DELETE',
+        });
+  
+        if (response.ok) {
+            location.reload();
+        }
+    }
+}
+
+document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', function(){ deleteTextHandler(btn.dataset.id) });
+});
+
 
 // Disable add button when 3 envelopes already exist
 const submitButton = document.querySelector(".add-envelope button");

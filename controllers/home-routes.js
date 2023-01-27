@@ -17,14 +17,15 @@ router.get(('/add'), (req, res) => {
     } else {
         Envelope.findAll()
         .then((envelopeData) => {
-          res.render('add', {
-            envelopeData
-          });
+            const envelopes = envelopeData.map(envelope => envelope.get({ plain: true }));
+            res.render('add', {
+                envelopes
+            });
         })
         // Error catch for Envelope.findAll
         .catch((err) => {
-          console.log(err);
-          res.status(500).json(err);
+            console.log(err);
+            res.status(500).json(err);
         });
     }
 });

@@ -3,6 +3,7 @@ const socket = io(); // SOCKET.IO
 const envelopesBtn = document.querySelector('#randomize-envelopes-btn');
 const parcelBtn = document.querySelector('#randomize-img-btn');
 const clearParcelBtn = document.querySelector('#clear-img-btn');
+const clearEnvelopeBtn = document.querySelector('#clear-envelope-btn');
 
 const envelopeContent = document.querySelector('#envelope-content');
 const envelopesView = document.querySelector('#envelope-view');
@@ -79,6 +80,17 @@ if (clearParcelBtn) {
     });
 }
 
+if (clearEnvelopeBtn) {
+    clearEnvelopeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Emit the following information
+        socket.emit('envelope', {
+            current: 'clearEnvelope'
+        });
+    });
+}
+
 // Socket on taking in the information from the emit
 socket.on('envelope', (data) => {
     if (data.current === 'envelope' && envelopesView) {
@@ -138,7 +150,6 @@ socket.on('envelope', (data) => {
         const allEnvelopeCont = document.querySelectorAll('.envelope-cont');
 
         allEnvelopeCont.forEach((envelopeCont, i) => {
-            console.log(allEnvelopeCont[data.envelopeNum])
             if (allEnvelopeCont[data.envelopeNum].classList.contains('show-content')) {
                 allEnvelopeCont[data.envelopeNum].classList.remove('show-content');
             } else {
@@ -146,6 +157,15 @@ socket.on('envelope', (data) => {
             }
         });
         
+    }
+    else if (data.current = 'clearEnvelope' && envelopesView) {
+        if (document.querySelector('.show-content')) {
+            document.querySelector('.show-content').classList.remove('show-content');
+        }
+        const allEnv = document.querySelectorAll('.envelope');
+        allEnv.forEach(env => {
+            env.classList.add('flip');
+        })
     }
     else if (data.current === 'parcel' && parcelImg) {
         parcelImg.classList.remove("show-img");

@@ -28,6 +28,12 @@
         <img id="parcel-img" />
     </div>
     {{/unless}}
+
+    {{#if dashboardView}}
+    <div class="dash-clear-btns">
+        <button class="btn-link" id="clear-envelope-btn">Close Envelope Letter</button>
+    </div>
+    {{/if}}
 </div>
 
 <script src="/assets/js/stream.js"></script>

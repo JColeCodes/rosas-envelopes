@@ -95,7 +95,6 @@ if (clearEnvelopeBtn) {
 socket.on('envelope', (data) => {
     if (data.current === 'envelope' && envelopesView) {
         envelopeContent.innerHTML = '';
-
         envelopesView.innerHTML = '';
 
         data.envelopesList.forEach((envelope, i) => {
@@ -158,7 +157,7 @@ socket.on('envelope', (data) => {
         });
         
     }
-    else if (data.current = 'clearEnvelope' && envelopesView) {
+    else if (data.current === 'clearEnvelope' && envelopesView) {
         if (document.querySelector('.show-content')) {
             document.querySelector('.show-content').classList.remove('show-content');
         }
@@ -175,7 +174,7 @@ socket.on('envelope', (data) => {
         parcelImg.src = `/assets/images/parcels/00${data.parcel}.png`;
         }, 400);
     }
-    else if (data.current = 'clearParcel' && parcelImg) {
+    else if (data.current === 'clearParcel' && parcelImg) {
         parcelImg.classList.remove("show-img");
         setTimeout(function() {
             parcelImg.classList.remove("show-img");

@@ -140,7 +140,18 @@ h2 {
   color: var(--fez-dark);
 }
 .dash-btns {
+  margin: 0 0 15px 0;
+}
+.dash-clear-btns {
   margin: 0 0 25px 0;
+}
+.dash-clear-btns button {
+  font-size: 1em;
+  color: var(--fez);
+  padding: 10px;
+}
+.dash-clear-btns button:hover {
+  color: var(--fez-dark);
 }
 
 
@@ -168,7 +179,7 @@ ul.current-list li {
   margin: 0 0 10px;
   border-bottom: 1px solid #181818;
 }
-ul.current-list li .envelope-text {
+ul.current-list li .curr-envelope-text {
   flex: 1;
   text-align: left;
 }
@@ -193,8 +204,109 @@ ul.current-list li .envelope-text {
   transition: all 0.4s ease-in-out;
 }
 
-.dash-view {
+/* .dash-view {
   transform: scale(.5);
+} */
+
+#envelope-view {
+  display: flex;
+}
+.envelope {
+  background: transparent;
+  width: 30vw;
+  height: calc(30vw - 100px);
+  perspective: 1200px;
+  margin-bottom: 40px;
+  margin: 10px;
+}
+.envelope-wrap {
+  position: relative;
+  width: 100%; height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+/* .envelope:hover .envelope-wrap {
+  cursor: pointer;
+  transform: rotateY(180deg);
+} */
+.envelope:hover {
+  cursor: pointer;
+}
+.envelope.flip .envelope-wrap {
+  transform: rotateY(180deg);
+}
+.envelope-style {
+  border-radius: 5px;
+  position: absolute;
+  width: 100%; height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 25px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.2);
+}
+.envelope-back {
+  background-color: var(--bg-color);
+  background-image: url('/assets/images/envelopes/envelope-bg.jpg');
+  transform: rotateY(180deg);
+  color: var(--dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4em;
+}
+.envelope-front {
+  background-color: var(--bg-color);
+  background-image: url('/assets/images/envelopes/envelope-front.jpg');
+}
+.envelope-text {
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#envelope-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: -1;
+  flex-direction: column;
+}
+#envelope-content div {
+  background-image: url('/assets/images/envelopes/envelope-bg.jpg');
+  background-color: var(--bg-color);
+  padding: 50px;
+  font-size: 3em;
+  color: var(--dark);
+  transform: scale(0);
+  transition: all 0.4s ease-in-out;
+  width: 100%; max-width: 750px;
+}
+#envelope-content .show-content {
+  transform: scale(1);
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  z-index: 1000;
+}
+
+.indie-flower {
+  font-family: 'Indie Flower', cursive;
+  font-size: .8em;
+}
+.nanum-brush {
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 1.1em;
+}
+.square-peg {
+  font-family: 'Square Peg', cursive;
+  font-size: 1.05em;
 }
 
 input:focus {

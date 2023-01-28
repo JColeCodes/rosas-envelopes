@@ -12,11 +12,18 @@
     {{#if dashboardView}}<h2>Envelopes</h2>{{/if}}
     <div id="envelope-view" class="{{#if dashboardView}}dash-view{{/if}}">
     </div>
+    <div id="envelope-content">
+    </div>
     {{/unless}}
 
     <!-- Parcel Image -->
     {{#unless envelopeView}}
-    {{#if dashboardView}}<h2>Parcel Delivery Message</h2>{{/if}}
+    {{#if dashboardView}}
+    <h2>Parcel Delivery Message</h2>
+    <div class="dash-clear-btns">
+        <button class="btn-link" id="clear-img-btn">Clear Parcel Delivery Message</button>
+    </div>
+    {{/if}}
     <div id="parcel-view" class="{{#if dashboardView}}dash-view{{/if}}">
         <img id="parcel-img" />
     </div>

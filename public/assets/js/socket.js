@@ -139,7 +139,7 @@ socket.on('envelope', (data) => {
     }
     else if (data.current === "clickEnvelope" && envelopesView) {
         const currentEnv = document.querySelector(`#env-${data.envelopeNum}`);
-        console.log(currentEnv);
+        
         if (currentEnv.classList.contains('flip')) {
             currentEnv.classList.remove('flip');
         } else {
@@ -148,13 +148,15 @@ socket.on('envelope', (data) => {
 
         const allEnvelopeCont = document.querySelectorAll('.envelope-cont');
 
-        allEnvelopeCont.forEach((envelopeCont, i) => {
-            if (allEnvelopeCont[data.envelopeNum].classList.contains('show-content')) {
-                allEnvelopeCont[data.envelopeNum].classList.remove('show-content');
-            } else {
-                allEnvelopeCont[data.envelopeNum].classList.add('show-content');
-            }
-        });
+        setTimeout(function() {
+            allEnvelopeCont.forEach((envelopeCont, i) => {
+                if (allEnvelopeCont[data.envelopeNum].classList.contains('show-content')) {
+                    allEnvelopeCont[data.envelopeNum].classList.remove('show-content');
+                } else {
+                    allEnvelopeCont[data.envelopeNum].classList.add('show-content');
+                }
+            });
+        }, 300);
         
     }
     else if (data.current === 'clearEnvelope' && envelopesView) {
@@ -162,9 +164,11 @@ socket.on('envelope', (data) => {
             document.querySelector('.show-content').classList.remove('show-content');
         }
         const allEnv = document.querySelectorAll('.envelope');
-        allEnv.forEach(env => {
-            env.classList.add('flip');
-        })
+        setTimeout(function() {
+            allEnv.forEach(env => {
+                env.classList.add('flip');
+            })
+        }, 300);
     }
     else if (data.current === 'parcel' && parcelImg) {
         parcelImg.classList.remove("show-img");

@@ -4,6 +4,7 @@
   --bee: #FBE509;
   --bg-color: #FFF;
   --dark: #222;
+  --pastel: #ffef80;
   }
 
 * {
@@ -74,7 +75,7 @@ header h1 {
   font-family: 'Luckiest Guy', cursive;
   font-family: 400;
   font-size: 3em;
-  margin: 0 0 15px;
+  margin: 20px 0;
   color: var(--bg-color);
 }
 
@@ -204,9 +205,10 @@ ul.current-list li .curr-envelope-text {
   transition: all 0.4s ease-in-out;
 }
 
-/* .dash-view {
+.dash-view {
   transform: scale(.5);
-} */
+  -webkit-transform-origin-y: 0;
+}
 
 #envelope-view {
   display: flex;
@@ -214,7 +216,7 @@ ul.current-list li .curr-envelope-text {
 .envelope {
   background: transparent;
   width: 30vw;
-  height: calc(30vw - 100px);
+  height: calc(30vw - 15vw);
   perspective: 1200px;
   margin-bottom: 40px;
   margin: 10px;
@@ -225,11 +227,8 @@ ul.current-list li .curr-envelope-text {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: var(--pastel);
 }
-/* .envelope:hover .envelope-wrap {
-  cursor: pointer;
-  transform: rotateY(180deg);
-} */
 .envelope:hover {
   cursor: pointer;
 }
@@ -246,18 +245,24 @@ ul.current-list li .curr-envelope-text {
   box-shadow: 2px 2px 5px rgba(0,0,0,.2);
 }
 .envelope-back {
+  mix-blend-mode: multiply;
   background-color: var(--bg-color);
   background-image: url('/assets/images/envelopes/envelope-bg.jpg');
+  background-size: cover;
+  background-position: center;
   transform: rotateY(180deg);
   color: var(--dark);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 8em;
+  font-size: 10em;
 }
 .envelope-front {
+  mix-blend-mode: multiply;
   background-color: var(--bg-color);
   background-image: url('/assets/images/envelopes/envelope-front.jpg');
+  background-size: cover;
+  background-position: center;
 }
 .envelope-text {
   background-color: var(--bg-color);
@@ -272,17 +277,12 @@ ul.current-list li .curr-envelope-text {
   flex-direction: column;
 }
 #envelope-content div {
-  background-image: url('/assets/images/envelopes/envelope-bg.jpg');
-  background-color: var(--bg-color);
+  background-color: var(--pastel);
   padding: 50px;
   font-size: 6em;
   color: var(--dark);
   transform: scale(0);
   transition: all 0.4s ease-in-out;
-  /* width: 100%; max-width: 750px;
-  position: absolute;
-  top: 0; left: 0;
-  margin: 0 auto; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -291,6 +291,18 @@ ul.current-list li .curr-envelope-text {
   position: absolute;
   top: 0; left: 0;
   z-index: -1;
+}
+#envelope-content div::before {
+  content: '';
+  mix-blend-mode: multiply;
+  min-height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: -1;
+  background-image: url('/assets/images/envelopes/envelope-bg.jpg');
+  background-size: cover;
+  background-position: center;
 }
 #envelope-content .show-content {
   transform: scale(1);
@@ -307,10 +319,12 @@ ul.current-list li .curr-envelope-text {
 .indie-flower {
   font-family: 'Indie Flower', cursive;
   font-size: .7em;
+  filter: hue-rotate(120deg);
 }
 .nanum-brush {
   font-family: 'Nanum Brush Script', cursive;
   font-size: 1.1em;
+  filter: hue-rotate(240deg);
 }
 .square-peg {
   font-family: 'Square Peg', cursive;

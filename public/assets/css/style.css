@@ -4,7 +4,7 @@
   --bee: #FBE509;
   --bg-color: #FFF;
   --dark: #222;
-  --pastel: #ffef80;
+  --pastel: #80ff83;
   }
 
 * {
@@ -228,6 +228,7 @@ ul.current-list li .curr-envelope-text {
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   background-color: var(--pastel);
+  border-radius: 2px;
 }
 .envelope:hover {
   cursor: pointer;
@@ -279,7 +280,7 @@ ul.current-list li .curr-envelope-text {
 #envelope-content div {
   background-color: var(--pastel);
   padding: 50px;
-  font-size: 6em;
+  font-size: 5.8em;
   color: var(--dark);
   transform: scale(0);
   transition: all 0.4s ease-in-out;
@@ -316,19 +317,26 @@ ul.current-list li .curr-envelope-text {
   z-index: 10000;
 }
 
-.indie-flower {
-  font-family: 'Indie Flower', cursive;
-  font-size: .7em;
-  filter: hue-rotate(120deg);
-}
-.nanum-brush {
-  font-family: 'Nanum Brush Script', cursive;
+.patrick-hand {
+  font-family: 'Patrick Hand', cursive;
   font-size: 1.1em;
-  filter: hue-rotate(240deg);
+  line-height: 1;
 }
-.square-peg {
-  font-family: 'Square Peg', cursive;
-  font-size: 1.05em;
+.averia-serif {
+  font-family: 'Averia Serif Libre', cursive;
+  line-height: 1;
+}
+.sedgwick-ave {
+  font-family: 'Sedgwick Ave', cursive;
+  font-size: .7em;
+  line-height: 1.2;
+}
+.patrick-hand .envelope-back {
+  padding: 0 0 10px;
+}
+.sedgwick-ave .envelope-back {
+  font-size: 11.5em;
+  padding: 20px 0 0;
 }
 
 input:focus {
@@ -344,4 +352,13 @@ input:focus {
   min-height: 100vh;
   width: 100vw;
   padding: 50px;
+}
+
+@media screen and (max-width: 660px) {
+  .envelope-back {
+    font-size: 7em;
+  }
+  .sedgwick-ave .envelope-back {
+    font-size: 8em;
+  }
 }

@@ -10,7 +10,8 @@ const envelopesView = document.querySelector('#envelope-view');
 const parcelImg = document.querySelector('#parcel-img');
 
 const envelopeLetters = ['A', 'B', 'C'];
-const letterFonts = ["indie-flower", "nanum-brush", "square-peg"]
+const letterFonts = ['patrick-hand', 'averia-serif', 'sedgwick-ave'];
+let letterColors = [];
 
 function randomize(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -45,14 +46,33 @@ if (envelopesBtn) {
                 letterFonts[i] = letterFonts[j];
                 letterFonts[j] = temp;
             }
+            
+            letterColors = [];
 
+            for (let i = 0; i < envelopesList.length; i++) {
+                let randomColor = randomize(50, 310);
+
+                // Prevents colors from being too similar... janky
+                if (i === 1) {
+                    while (randomColor <= (letterColors[0] + 40) && randomColor >= (letterColors[0] - 40)) {
+                        randomColor = randomize(50, 310);
+                    }
+                } else if (i === 2) {
+                    while ((randomColor <= (letterColors[0] + 40) && randomColor >= (letterColors[0] - 40)) || (randomColor <= (letterColors[1] + 40) && randomColor >= (letterColors[1] - 40))) {
+                        randomColor = randomize(50, 310);
+                    }
+                }
+
+                letterColors.push(randomColor);
+            }
         }
         
         // Emit the following information
         socket.emit('envelope', {
             current: 'envelope',
             envelopesList,
-            letterFonts
+            letterFonts,
+            letterColors
         });
     });
 }
@@ -103,12 +123,15 @@ socket.on('envelope', (data) => {
             var envelopeFront = document.createElement('div');
             var envelopeBack = document.createElement('div');
             var envelopeText = document.createElement('div');
+            var hueRotate = `hue-rotate(${data.letterColors[i]}deg)`;
 
             envelopeFlip.classList.add('envelope', 'flip', data.letterFonts[i]);
             envelopeWrap.classList.add('envelope-wrap');
             envelopeBack.classList.add('envelope-style', 'envelope-back');
             envelopeFront.classList.add('envelope-style', 'envelope-front');
             envelopeText.classList.add('envelope-cont', data.letterFonts[i]);
+            envelopeText.style.filter = hueRotate;
+            envelopeFlip.style.filter = hueRotate;
             envelopeFlip.setAttribute('id', `env-${i}`);
 
             envelopeText.textContent = envelope;

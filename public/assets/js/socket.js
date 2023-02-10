@@ -50,16 +50,16 @@ if (envelopesBtn) {
             letterColors = [];
 
             for (let i = 0; i < envelopesList.length; i++) {
-                let randomColor = randomize(50, 310);
+                let randomColor = randomize(60, 300);
 
                 // Prevents colors from being too similar... janky
                 if (i === 1) {
                     while (randomColor <= (letterColors[0] + 40) && randomColor >= (letterColors[0] - 40)) {
-                        randomColor = randomize(50, 310);
+                        randomColor = randomize(60, 300);
                     }
                 } else if (i === 2) {
                     while ((randomColor <= (letterColors[0] + 40) && randomColor >= (letterColors[0] - 40)) || (randomColor <= (letterColors[1] + 40) && randomColor >= (letterColors[1] - 40))) {
-                        randomColor = randomize(50, 310);
+                        randomColor = randomize(60, 300);
                     }
                 }
 

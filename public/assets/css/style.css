@@ -212,6 +212,7 @@ ul.current-list li .curr-envelope-text {
 
 #envelope-view {
   display: flex;
+  justify-content: center;
 }
 .envelope {
   background: transparent;

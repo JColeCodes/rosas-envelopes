@@ -50,16 +50,16 @@ if (envelopesBtn) {
             letterColors = [];
 
             for (let i = 0; i < envelopesList.length; i++) {
-                let randomColor = randomize(60, 300);
+                let randomColor = randomize(70, 290);
 
                 // Prevents colors from being too similar... janky
                 if (i === 1) {
                     while (randomColor <= (letterColors[0] + 40) && randomColor >= (letterColors[0] - 40)) {
-                        randomColor = randomize(60, 300);
+                        randomColor = randomize(70, 290);
                     }
                 } else if (i === 2) {
                     while ((randomColor <= (letterColors[0] + 40) && randomColor >= (letterColors[0] - 40)) || (randomColor <= (letterColors[1] + 40) && randomColor >= (letterColors[1] - 40))) {
-                        randomColor = randomize(60, 300);
+                        randomColor = randomize(70, 290);
                     }
                 }
 
@@ -84,7 +84,7 @@ if (parcelBtn) {
         // Emit the following information
         socket.emit('envelope', {
             current: 'parcel',
-            parcel: randomize(1, 6)
+            parcel: randomize(1, 8)
         });
     });
 }
@@ -172,13 +172,11 @@ socket.on('envelope', (data) => {
         const allEnvelopeCont = document.querySelectorAll('.envelope-cont');
 
         setTimeout(function() {
-            allEnvelopeCont.forEach((envelopeCont, i) => {
-                if (allEnvelopeCont[data.envelopeNum].classList.contains('show-content')) {
-                    allEnvelopeCont[data.envelopeNum].classList.remove('show-content');
-                } else {
-                    allEnvelopeCont[data.envelopeNum].classList.add('show-content');
-                }
-            });
+            if (allEnvelopeCont[data.envelopeNum].classList.contains('show-content')) {
+                allEnvelopeCont[data.envelopeNum].classList.remove('show-content');
+            } else {
+                allEnvelopeCont[data.envelopeNum].classList.add('show-content');
+            }
         }, 300);
         
     }

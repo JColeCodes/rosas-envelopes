@@ -1,0 +1,1 @@
+Public image uploads will go in here. Images folder can never be empty.

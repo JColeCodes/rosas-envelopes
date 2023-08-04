@@ -34,19 +34,6 @@ router.get(('/stream-control'), (req, res) => {
     if (!req.session.loggedIn) {
         res.render('login');
     } else {
-        // Envelope.findAll()
-        // .then((envelopeData) => {
-        //     const envelopes = envelopeData.map(envelope => envelope.get({ plain: true }));
-        //     res.render('stream', {
-        //         envelopes,
-        //         dashboardView: true
-        //     });
-        // })
-        // // Error catch for Envelope.findAll
-        // .catch((err) => {
-        //     console.log(err);
-        //     res.status(500).json(err);
-        // });
         res.render('stream', { dashboardView: true });
     }
 });

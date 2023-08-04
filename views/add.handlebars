@@ -12,6 +12,17 @@
             </div>
         </form>
     </div>
+    <div class="envelope-form image-form">
+        <h2>Upload envelope image</h2>
+        <form class="add-envelope add-img" action="/api/envelopes/img" method="POST" enctype="multipart/form-data">
+            <div>
+                <input type="file" id="add-img" name="uploadimg" />
+            </div>
+            <div>
+                <button type="submit" class="btn-link">Upload</button>
+            </div>
+        </form>
+    </div>
 
     <div class="current-envelopes">
         <h2>Current Envelopes</h2>
@@ -21,13 +32,17 @@
             <ul class="current-list">
                 {{#each envelopes as |envelope|}}
                 <li>
-                    <div class="curr-envelope-text">{{envelope.envelope_text}}</div>
-                    <div data-id="{{envelope.id}}" class="btn-link delete-btn">Delete</div>
+                    <div class="curr-envelope-text">
+                        {{{display_content envelope.envelope_text}}}
+                    </div>
+                    <div data-id="{{envelope.id}}" data-content="{{envelope.envelope_text}}" class="btn-link delete-btn">Delete</div>
                 </li>
                 {{/each}}
             </ul>
         {{/if}}
     </div>
+
+    <button class="btn-link" id="change-page-btn" onclick="location.href='/stream-control'">Go to "Pick Envelopes" Page</button>
 </div>
 
 <script src="/assets/js/add.js"></script>

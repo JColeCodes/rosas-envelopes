@@ -118,24 +118,36 @@ socket.on('envelope', (data) => {
         envelopesView.innerHTML = '';
 
         data.envelopesList.forEach((envelope, i) => {
+
             var envelopeFlip = document.createElement('div');
             var envelopeWrap = document.createElement('div');
             var envelopeFront = document.createElement('div');
             var envelopeBack = document.createElement('div');
-            var envelopeText = document.createElement('div');
             var hueRotate = `hue-rotate(${data.letterColors[i]}deg)`;
 
             envelopeFlip.classList.add('envelope', 'flip', data.letterFonts[i]);
             envelopeWrap.classList.add('envelope-wrap');
             envelopeBack.classList.add('envelope-style', 'envelope-back');
             envelopeFront.classList.add('envelope-style', 'envelope-front');
-            envelopeText.classList.add('envelope-cont', data.letterFonts[i]);
-            envelopeText.style.filter = hueRotate;
             envelopeFlip.style.filter = hueRotate;
             envelopeFlip.setAttribute('id', `env-${i}`);
 
-            envelopeText.textContent = envelope;
             envelopeBack.textContent = envelopeLetters[i];
+
+            var envelopeText = document.createElement('div');
+            envelopeText.classList.add('envelope-cont', data.letterFonts[i]);
+            envelopeText.style.filter = hueRotate;
+
+            if (envelope.includes('FILENAME=')) {
+                var envelopeImg = document.createElement('img');
+                envelopeImg.classList.add('envelope-img');
+                envelopeImg.setAttribute('src', `./assets/images/uploads/${envelope.split('FILENAME=').slice(-1, envelope.length)}`);
+                envelopeImg.style.filter = `hue-rotate(-${data.letterColors[i]}deg)`;
+
+                envelopeText.appendChild(envelopeImg);
+            } else {
+                envelopeText.textContent = envelope;
+            }
 
             envelopesView.appendChild(envelopeFlip);
             envelopeContent.appendChild(envelopeText);

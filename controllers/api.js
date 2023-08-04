@@ -1,6 +1,28 @@
 const router = require('express').Router();
 const { Envelope, User } = require('../models');
 
+const multer = require('multer');
+const fs = require('fs');
+
+// MULTER stuff
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/assets/images/uploads');
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    },
+});
+const imageFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith("image")) {
+      cb(null, true);
+    } else {
+      cb("Please upload only images.", false);
+    }
+};
+const upload = multer({ storage: storage, fileFilter: imageFilter });
+
+
 // Get all users
 router.get('/users', (req, res) => {
   User.findAll({
@@ -78,8 +100,36 @@ router.post('/envelopes/add', (req, res) => {
     });
 });
 
+// Upload envelope image
+router.post('/envelopes/img', upload.single('uploadimg'), (req, res) => {
+    /* Expects: {
+        "envelope_text": "img.png"
+    } */
+    console.log(req.file);
+    Envelope.create({
+        envelope_text: `FILENAME=${req.file.filename}`
+    })
+    .then((dbEnvelopeData) => {
+        const envelopes = dbEnvelopeData.get({ plain: true });
+        res.redirect('/add');
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 // Remove envelope
 router.delete('/envelopes/remove/:id', (req, res) => {
+    if (req.body.envelope_text) {
+        fs.unlink(`./public/assets/images/uploads/${req.body.envelope_text}`, (err) => {
+            if (err) { 
+                console.error(err);
+                return;
+            }
+        });
+    }
+    
     Envelope.destroy({
         where: {
             id: req.params.id

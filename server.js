@@ -6,7 +6,8 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create();
+const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ helpers });
 
 require('dotenv').config();
 
@@ -36,7 +37,7 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/assets/images/uploads/', express.static('./assets/images/uploads/'));
 
 // Turn on routes
 app.use(routes);
